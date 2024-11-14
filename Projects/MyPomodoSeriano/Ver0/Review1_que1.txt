@@ -1,0 +1,287 @@
+Merhaba, Senden ricam asagidaki kodumu incelemeni ve bana oncelikle onerilerini ,gelistirme ipuclarini anlatman. Daha sonra akis diyagramini  listelemen, bana hic bilmeyen birine anlatir gibi varable, fonksiyon v.s leri adim adim anlatman. Pseudo kodunu olusturmani istiyorum.
+
+
+
+------------------------------------
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>MyPomodoroSeria Timer</title>
+
+</head>
+
+<body>
+
+  <button onclick="startTimer()">Start</button>
+
+  <button onclick="stopTimer()">Stop</button>
+
+  <button onclick="resetTimer()">Reset</button>
+
+  <button onclick="pauseTimer()">Short Break</button>
+
+  <button onclick="longPauseTimer()">Long Break</button>
+
+  <div id="timer"></div>
+
+
+
+  <input type="text" id="WorkName" placeholder="Work Name">
+
+
+
+  <script>
+
+    let timer;
+
+    let workTime = 25 * 60; // 25 minutes
+
+    let breakTime = 5 * 60; // 5 minutes
+
+    let longBreakTime = 15 * 60; // 15 minutes
+
+    let isWorking = true;
+
+    let isPaused = false;
+
+
+
+    function startTimer() {
+
+  isPaused = false; // Reset pause flag
+
+
+
+  // Update displayed time on start
+
+  document.getElementById("timer").textContent = formatTime(isWorking ? workTime : breakTime);
+
+
+
+  timer = setInterval(() => {
+
+    if (isWorking) {
+
+      workTime--;
+
+      if (workTime === 0) {
+
+        isWorking = false;
+
+        workTime = 25 * 60;
+
+        alert("Break time!");
+
+        // Çalışma sona erdiğinde kayıt ekle
+
+        addRecordToCSV();
+
+      }
+
+    } else {
+
+      breakTime--;
+
+      if (breakTime === 0) {
+
+        isWorking = true;
+
+        breakTime = 5 * 60;
+
+        alert("Get back to work!");
+
+        // Mola sona erdiğinde kayıt ekle
+
+        addRecordToCSV();
+
+      }
+
+    }
+
+
+
+    document.getElementById("timer").textContent = formatTime(isWorking ? workTime : breakTime);
+
+  }, 1000);
+
+}
+
+
+
+  // Çalışma kaydını ekle (setInterval'dan sonra)
+
+ // addRecordToCSV();
+
+
+
+
+
+    // Function to add record to CSV
+
+    function addRecordToCSV() {
+
+      const WorkName = document.getElementById("WorkName").value;
+
+      const tarih = new Date().toLocaleDateString('tr-TR');
+
+      const zaman = new Date().toLocaleTimeString('tr-TR');
+
+
+
+      // Yeni CSV içeriğini oluştur
+
+      const csvContent = `${tarih};${zaman};${WorkName}\n`;
+
+      const file = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+
+
+
+      // Dosyayı indir
+
+      const a = document.createElement('a');
+
+      const url = URL.createObjectURL(file);
+
+      a.href = url;
+
+      a.download = 'workTimeRecord.csv';
+
+      document.body.appendChild(a);
+
+      a.click();
+
+      document.body.removeChild(a);
+
+      URL.revokeObjectURL(url);
+
+
+
+      console.log("CSV dosyası başarıyla oluşturuldu.");
+
+    }
+
+
+
+    function stopTimer() {
+
+      clearInterval(timer);
+
+      isPaused = false;
+
+    }
+
+
+
+    function resetTimer() {
+
+      clearInterval(timer);
+
+      workTime = 25 * 60;
+
+      breakTime = 5 * 60;
+
+      isWorking = true;
+
+      isPaused = false;
+
+      document.getElementById("timer").textContent = formatTime(workTime);
+
+    }
+
+
+
+    function pauseTimer() {
+
+  clearInterval(timer);
+
+  breakTime = 5 * 60; // Kısa mola süresini ayarla
+
+  isWorking = false; // Mola moduna geç
+
+  isPaused = true;
+
+  document.getElementById("timer").textContent = formatTime(breakTime);
+
+}
+
+
+
+    function longPauseTimer() {
+
+      clearInterval(timer);
+
+      breakTime = longBreakTime;
+
+      isWorking = false;
+
+      document.getElementById("timer").textContent = formatTime(breakTime);
+
+    }
+
+
+
+    function formatTime(seconds) {
+
+      const minutes = Math.floor(seconds / 60);
+
+      const secondsRemaining = seconds % 60;
+
+      return `${minutes.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')}`;
+
+    }
+
+    function startShortBreak() {
+
+  clearInterval(timer);
+
+  breakTime = 5 * 60; // Kısa mola süresi
+
+  isWorking = false; // Mola moduna geç
+
+  isPaused = false;
+
+
+
+  timer = setInterval(() => {
+
+    breakTime--;
+
+    document.getElementById("timer").textContent = formatTime(breakTime);
+
+
+
+    if (breakTime === 0) {
+
+      clearInterval(timer);
+
+      isWorking = true;
+
+      breakTime = 5 * 60;
+
+      alert("Kısa mola sona erdi, çalışmaya devam!");
+
+    }
+
+  }, 1000);
+
+
+
+  document.getElementById("timer").textContent = formatTime(breakTime);
+
+}
+
+
+
+  </script>
+
+</body>
+
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MyPomodoroSeria Timer</title>
+  <link rel="stylesheet" href="https://gabaci72.github.io/style/style.css">
+
+</head>
+<body>
+  <header>
+    <a href="https://gabaci72.github.io/"><h1 id="seriano">Seriano</h1></a><p>My life style</p>
+      <nav>
+        <ul>
+          <li><a href="https://gabaci72.github.io/bigchallenge/">Big Challenge</a></li>
+          <li><a href="https://gabaci72.github.io/index%20CSHT.html">Web Develop CheatSheets</a></li>
+      </nav>
+    </header>
+
+   
+  <button onclick="startTimer()">Start</button>
+<button onclick="stopTimer()">Stop</button>
+<button onclick="resetTimer()">Reset</button>
+<button onclick="shortPauseTimer()">Short Break</button>
+<button onclick="longPauseTimer()">Long Break</button>
+  <div id="timer"></div>
+
+  <input type="text" id="WorkName" placeholder="Work Name">
+
+  <script>
+    let timer;
+    let workTime = 25 * 60; // 25 minutes
+    let breakTime = 5 * 60; // 5 minutes
+    let longBreakTime = 15 * 60; // 15 minutes
+    let isWorking = true;
+    let isPaused = false;
+
+    function startTimer() {
+      isPaused = false; // Reset pause flag
+
+      timer = setInterval(() => {
+        if (isWorking) {
+          workTime--;
+        } else {
+          breakTime--;
+        }
+
+        document.getElementById("timer").textContent = formatTime(isWorking ? workTime : breakTime);
+
+        if (workTime === 0) {
+          isWorking = false;
+          workTime = 25 * 60;
+          alert("Break time!");
+        } else if (breakTime === 0) {
+          isWorking = true;
+          breakTime = 5 * 60;
+          alert("Get back to work!");
+        }
+      }, 1000);
+
+      // Update displayed time on start
+      document.getElementById("timer").textContent = formatTime(workTime);
+    }
+
+    function stopTimer() {
+      clearInterval(timer);
+      isPaused = false;
+    }
+
+    function resetTimer() {
+      clearInterval(timer);
+      workTime = 25 * 60;
+      breakTime = 5 * 60;
+      isWorking = true;
+      isPaused = false;
+      document.getElementById("timer").textContent = formatTime(workTime);
+    }
+
+    function pauseTimer() {
+      clearInterval(timer);
+      isPaused = true;
+    }
+
+    function formatTime(seconds) {
+      const minutes = Math.floor(seconds / 60);
+      const secondsRemaining = seconds % 60;
+      return `${minutes.toString().padStart(2, '0')}:${secondsRemaining.toString().padStart(2, '0')}`;
+    }
+    // ... diğer kodların
+
+function shortPauseTimer() {
+  clearInterval(timer);
+  isWorking = false;
+  isPaused = false; // Mola sırasında da durdurulabilmesi için
+  breakTime = 5 * 60;
+  timer = setInterval(() => {
+    // ... mola süresini azaltan ve bitiş uyarısı veren kısım
+    breakTime--;
+    document.getElementById("timer").textContent = formatTime(breakTime);
+    if (breakTime === 0) {
+      isWorking = true;
+      breakTime = 5 * 60; // Sıradaki mola için hazırlan
+      alert("Çalışma zamanı!");
+    }
+  }, 1000);
+}
+
+function longPauseTimer() {
+  clearInterval(timer);
+  isWorking = false;
+  isPaused = false; // Mola sırasında da durdurulabilmesi için
+  breakTime = 15 * 60;
+  timer = setInterval(() => {
+    // ... mola süresini azaltan ve bitiş uyarısı veren kısım
+    breakTime--;
+    document.getElementById("timer").textContent = formatTime(breakTime);
+    if (breakTime === 0) {
+      isWorking = true;
+      breakTime = 5 * 60; // Sıradaki mola için hazırlan
+      alert("Çalışma zamanı!");
+    }
+  }, 1000);
+}
+  </script>
+   <div class="bg-image">
+  </div>
+</body>
+</html>
