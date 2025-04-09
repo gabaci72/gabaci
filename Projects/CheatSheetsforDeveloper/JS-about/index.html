@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Documentation - Responsive Web Design Cheatsheets for Developers</title>
+    <!-- <link rel="stylesheet" href="../styles-project.css"> -->
+<link rel="stylesheet" href="../styles.css">
+</head>
+<body>
+<nav>
+  <div class="logo-container">
+    <img src="../img/GA-Logo1.png" alt="GA Logo" class="logo-img">
+    <span class="logo-text">gabaci</span>
+  </div>
+  <div class="nav-links">
+    <a href="../html-about/index.html">HTML CheatSheet</a>
+    <a href="../css-about/index.html">CSS CheatSheet</a>
+    <a href="../JS-about/index.html">JavaScript CheatSheet</a>
+  </div>
+</nav>
+
+    <header>
+        <div class="container">
+            <h1>Technical Documentation</h1>
+            <p>A technical documentation page with navigation and code examples</p>
+        </div>
+    </header>
+
+<main>
+        <nav id="navbar">
+            <header>
+                <h2>JS Documentation</h2>
+            </header>
+            <ul>
+                <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+                <li><a class="nav-link" href="#What_you_should_already_know">What you should already know</a></li>
+                <li><a class="nav-link" href="#JavaScript_and_Java">JavaScript and Java</a></li>
+                <li><a class="nav-link" href="#Hello_world">Hello world</a></li>
+                <li><a class="nav-link" href="#Variables">Variables</a></li>
+                <li><a class="nav-link" href="#Declaring_variables">Declaring variables</a></li>
+                <li><a class="nav-link" href="#Variable_scope">Variable scope</a></li>
+                <li><a class="nav-link" href="#Global_variables">Global variables</a></li>
+                <li><a class="nav-link" href="#Constants">Constants</a></li>
+                <li><a class="nav-link" href="#Data_types">Data types</a></li>
+            </ul>
+        </nav>
+
+        <div id="main-doc">
+            <section class="main-section" id="Introduction">
+                <header>
+                    <h3>Introduction</h3>
+                </header>
+                <p>JavaScript is a cross-platform, object-oriented scripting language. It is a small and lightweight language. Inside a host environment (for example, a web browser), JavaScript can be connected to the objects of its environment to provide programmatic control over them.</p>
+                <p>JavaScript contains a standard library of objects, such as Array, Date, and Math, and a core set of language elements such as operators, control structures, and statements. Core JavaScript can be extended for a variety of purposes by supplementing it with additional objects.</p>
+            </section>
+
+            <section class="main-section" id="What_you_should_already_know">
+                <header>
+                    <h3>What you should already know</h3>
+                </header>
+                <p>This guide assumes you have the following basic background:</p>
+                <ul>
+                    <li>A general understanding of the Internet and the World Wide Web (WWW).</li>
+                    <li>Good working knowledge of HyperText Markup Language (HTML).</li>
+                    <li>Some programming experience. If you are new to programming, try one of the tutorials linked on the main page about JavaScript.</li>
+                </ul>
+            </section>
+
+            <section class="main-section" id="JavaScript_and_Java">
+                <header>
+                    <h3>JavaScript and Java</h3>
+                </header>
+                <p>JavaScript and Java are similar in some ways but fundamentally different in some others. The JavaScript language resembles Java but does not have Java's static typing and strong type checking. JavaScript follows most Java expression syntax, naming conventions and basic control-flow constructs which was the reason why it was renamed from LiveScript to JavaScript.</p>
+                <p>In contrast to Java's compile-time system of classes built by declarations, JavaScript supports a runtime system based on a small number of data types representing numeric, Boolean, and string values. JavaScript has a prototype-based object model instead of the more common class-based object model. The prototype-based model provides dynamic inheritance; that is, what is inherited can vary for individual objects. JavaScript also supports functions without any special declarative requirements. Functions can be properties of objects, executing as loosely typed methods.</p>
+            </section>
+
+            <section class="main-section" id="Hello_world">
+                <header>
+                    <h3>Hello world</h3>
+                </header>
+                <p>To get started with writing JavaScript, open the Scratchpad and write your first "Hello world" JavaScript code:</p>
+                <code>
+function greetMe(yourName) {
+  alert("Hello " + yourName);
+}
+greetMe("World");
+                </code>
+                <p>Select the code in the pad and hit Ctrl+R to watch it unfold in your browser!</p>
+            </section>
+
+            <section class="main-section" id="Variables">
+                <header>
+                    <h3>Variables</h3>
+                </header>
+                <p>You use variables as symbolic names for values in your application. The names of variables, called identifiers, conform to certain rules.</p>
+                <p>A JavaScript identifier must start with a letter, underscore (_), or dollar sign ($); subsequent characters can also be digits (0-9). Because JavaScript is case sensitive, letters include the characters "A" through "Z" (uppercase) and the characters "a" through "z" (lowercase).</p>
+            </section>
+
+            <section class="main-section" id="Declaring_variables">
+                <header>
+                    <h3>Declaring variables</h3>
+                </header>
+                <p>You can declare a variable in three ways:</p>
+                <p>With the keyword var. For example,</p>
+                <code>var x = 42;</code>
+                <p>With the keyword const. For example,</p>
+                <code>const y = 13;</code>
+                <p>With the keyword let. For example,</p>
+                <code>let z = 13;</code>
+            </section>
+
+            <section class="main-section" id="Variable_scope">
+                <header>
+                    <h3>Variable scope</h3>
+                </header>
+                <p>When you declare a variable outside of any function, it is called a global variable, because it is available to any other code in the current document. When you declare a variable within a function, it is called a local variable, because it is available only within that function.</p>
+                <p>JavaScript before ECMAScript 2015 does not have block statement scope; rather, a variable declared within a block is local to the function (or global scope) that the block resides within. For example the following code will log 5, because the scope of x is the function (or global context) within which x is declared, not the block, which in this case is an if statement.</p>
+                <code>
+if (true) {
+  var x = 5;
+}
+console.log(x);  // 5
+                </code>
+            </section>
+
+            <section class="main-section" id="Global_variables">
+                <header>
+                    <h3>Global variables</h3>
+                </header>
+                <p>Global variables are in fact properties of the global object. In web pages the global object is window, so you can set and access global variables using the window.variable syntax.</p>
+                <p>Consequently, you can access global variables declared in one window or frame from another window or frame by specifying the window or frame name. For example, if a variable called phoneNumber is declared in a document, you can refer to this variable from an iframe as parent.phoneNumber.</p>
+            </section>
+
+            <section class="main-section" id="Constants">
+                <header>
+                    <h3>Constants</h3>
+                </header>
+                <p>You can create a read-only, named constant with the const keyword. The syntax of a constant identifier is the same as for a variable identifier: it must start with a letter, underscore or dollar sign and can contain alphabetic, numeric, or underscore characters.</p>
+                <code>const PI = 3.14;</code>
+                <p>A constant cannot change value through assignment or be re-declared while the script is running. It has to be initialized to a value.</p>
+                <p>The scope rules for constants are the same as those for let block scope variables. If the const keyword is omitted, the identifier is assumed to represent a variable.</p>
+                <p>You cannot declare a constant with the same name as a function or variable in the same scope. For example:</p>
+                <code>
+// THIS WILL CAUSE AN ERROR
+function f() {};
+const f = 5;
+                </code>
+            </section>
+
+            <section class="main-section" id="Data_types">
+                <header>
+                    <h3>Data types</h3>
+                </header>
+                <p>The latest ECMAScript standard defines eight data types:</p>
+                <ul>
+                    <li>Seven data types that are primitives:
+                        <ul>
+                            <li>Boolean. true and false.</li>
+                            <li>null. A special keyword denoting a null value.</li>
+                            <li>undefined. A top-level property whose value is undefined.</li>
+                            <li>Number. 42 or 3.14159.</li>
+                            <li>BigInt. 123456789123456789n.</li>
+                            <li>String. "Howdy"</li>
+                            <li>Symbol. Symbol("description").</li>
+                        </ul>
+                    </li>
+                    <li>and Object</li>
+                </ul>
+            </section>
+        </div>
+
+        <!-- Contact section -->
+        <section id="contact" class="contact-section">
+            <div class="contact-section-header">
+<h2>Let's work together...</h2>
+                <p>How do you take your coffee?</p>
+            </div>
+            <div class="contact-links">
+                <a id="profile-link" href="https://github.com/gabaci72" target="_blank" class="btn contact-details">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="https://x.com/serianonim" target="_blank" class="btn contact-details">
+                    <span style="font-weight:bold;margin-right:5px;">𝕏</span> X
+                </a>
+                <a href="https://www.linkedin.com/in/g%C3%BCraba-532b301b9/" target="_blank" class="btn contact-details">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="mailto:serianonim@gmail.com" class="btn contact-details">
+                    <i class="fas fa-at"></i> Send a mail
+                </a>
+                <a href="tel:555-555-5555" class="btn contact-details">
+                    <i class="fas fa-mobile-alt"></i> Call me
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p><a href="https://gabaci72.github.io/gabaci/" class="back-link"><i class="fas fa-arrow-left"></i> Return to Home page</a></p>
+            <p>Made by: <strong>GURSEL ABACI</strong></p>
+            <p>Created for Personal Portfolio Project</p>
+            <p>&copy; 2025 - All rights reserved</p>
+        </div>
+    </footer>
+</body>
+</html>
